@@ -1,0 +1,38 @@
+<div class="container addTask">
+<div class="col-md-6">  
+    <h2 class="text-center">{{taskformlabel}}</h2>  
+    <form [formGroup]="addForm" novalidate class="form">  
+      <div class="form-group">  
+        <label for="taskId">Task Id:</label>  
+        <input type="number" formControlName="id" placeholder="Id" name="taskId" class="form-control" id="taskId">  
+        <div class="alert  alert-danger" *ngIf="addForm.get('priority').hasError('required') && addForm.get('priority').touched">  
+            Task id is required 
+          </div> 
+      </div>  
+    
+      <div class="form-group">  
+        <label for="Name">Priority:</label>  
+        <input formControlName="priority" placeholder="Priority" name="priority" class="form-control" id="empName">  
+      </div>  
+
+      <div class="form-group">  
+        <label for="description">Description:</label>  
+        <input formControlName="description" placeholder="Description" name="description" class="form-control" id="description">  
+        <div class="alert  alert-danger" *ngIf="addForm.get('description').hasError('maxlength') && addForm.get('description').touched">  
+          Description is required.  
+        </div>  
+      </div>  
+    
+      <div class="form-group">  
+        <label for="status">Status:</label>  
+        <input formControlName="status" placeholder="Status" name="empAge" class="form-control" id="status">  
+        <div class="alert  alert-danger" *ngIf=" addForm.get('status').hasError('maxlength') && addForm.get('status').touched">  
+          Status is required.  
+        </div>  
+      </div>  
+      <button class="btn btn-success" [disabled]='addForm.invalid' *ngIf="btnvisibility" (click)="onSubmit()">Save</button>  
+      <button class="btn btn-success"  *ngIf="!btnvisibility" (click)="onUpdate()">Update</button>    
+      <button class="btn btn-primary listBtn"  (click)="onListTasks()">List Tasks</button>     
+    </form>  
+  </div>
+</div>
